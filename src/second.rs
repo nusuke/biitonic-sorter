@@ -1,4 +1,4 @@
-pub fn sort(x: &mut [u32], up: bool) {
+pub fn sort<T: Ord>(x: &mut [T], up: bool) {
     if x.len() > 1 {
         let mid_point = x.len() / 2;
         sort(&mut x[..mid_point], true);
@@ -7,7 +7,7 @@ pub fn sort(x: &mut [u32], up: bool) {
     }
 }
 
-fn sub_sort(x: &mut [u32], up: bool) {
+fn sub_sort<T: Ord>(x: &mut [T], up: bool) {
     if x.len() > 1 {
         compare_and_swap(x, up);
         let mid_point = x.len() / 2;
@@ -16,7 +16,7 @@ fn sub_sort(x: &mut [u32], up: bool) {
     }
 }
 
-fn compare_and_swap(x: &mut [u32], up: bool) {
+fn compare_and_swap<T: Ord>(x: &mut [T], up: bool) {
     let mid_point = x.len() / 2;
     for i in 0..mid_point {
         if (x[i] > x[mid_point + i]) == up {
@@ -56,12 +56,12 @@ mod tests {
     #[test]
     fn sort_string_ascending() {
         // setup
-        let mut x = vec!["rust", "is", "fast"];
+        let mut x = vec!["a", "c", "b"];
 
         // act
-        sort(&mut x, false);
+        sort(&mut x, true);
 
         // then
-        assert_eq!(x, vec!["rust", "fast", "is"])
+        assert_eq!(x, vec!["a", "b", "c"])
     }
 }
