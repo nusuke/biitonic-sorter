@@ -31,10 +31,37 @@ mod tests {
 
     #[test]
     fn sort_u32_ascending() {
+        // setup
         let mut x = vec![10, 30, 11, 20, 4, 330, 21, 110];
 
+        // act
         sort(&mut x, true);
 
+        // then
         assert_eq!(x, vec![4, 10, 11, 20, 21, 30, 110, 330])
+    }
+
+    #[test]
+    fn sort_u32_descending() {
+        // setup
+        let mut x = vec![10, 30, 11, 20, 4, 330, 21, 110];
+
+        // act
+        sort(&mut x, false);
+
+        // then
+        assert_eq!(x, vec![330, 110, 30, 21, 20, 11, 10, 4])
+    }
+
+    #[test]
+    fn sort_string_ascending() {
+        // setup
+        let mut x = vec!["rust", "is", "fast"];
+
+        // act
+        sort(&mut x, false);
+
+        // then
+        assert_eq!(x, vec!["rust", "fast", "is"])
     }
 }
